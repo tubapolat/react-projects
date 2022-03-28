@@ -1,0 +1,11 @@
+.listContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.search {
+    margin-bottom: 30px;
+    width: 300px;
+}
