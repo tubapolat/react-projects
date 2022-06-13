@@ -6,7 +6,7 @@ import Container from './componenets/conteiner';
 function App() {
   return (
     <ThemeProvider>
-<Container/>
+      <Container/>
     </ThemeProvider>
   );
 }

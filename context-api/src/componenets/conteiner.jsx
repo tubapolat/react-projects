@@ -1,17 +1,14 @@
-import Button from './Button';
+import Button from "./Button";
 
-import {useContext} from 'react';
-import ThemeContext from '../context/ThemeContext';
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
 
-function Container(){
-    const {theme}= useContext(ThemeContext);
-    return(
-<div className={`app ${theme ==="dark" ? theme:""}`}>
-    <Button/>
-</div>
-
-    );
-
-   
+function Container() {
+  const { theme } = useContext(ThemeContext);
+  return (
+    <div className={`app ${theme === "dark" ? theme : ""}`}>
+      <Button />
+    </div>
+  );
 }
 export default Container;
