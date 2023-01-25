@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 
 const ChatContext = createContext();
 
-export const ChatProvider = ({children}) => {
+export const ChatProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
 
   const values = {
@@ -13,4 +13,4 @@ export const ChatProvider = ({children}) => {
 
   return <ChatContext.Provider value={values}>{children}</ChatContext.Provider>;
 };
-export const useChat= ()=>useContext(ChatContext);
+export const useChat = () => useContext(ChatContext);

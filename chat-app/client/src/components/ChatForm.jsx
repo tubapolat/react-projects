@@ -9,7 +9,7 @@ const ChatForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(message);
-    setMessages((prevState) => [...prevState, { message, fromMe:true }]);
+    setMessages((prevState) => [...prevState, { message, fromMe: true }]);
     sendMessage(message);
     setMessage("");
   };
