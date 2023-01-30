@@ -38,10 +38,14 @@ position: relative;
   justify-content: center;
 }
 
-.taskBg.done.taskText{
+.taskBg .taskText{
+  flex: 1;
+}
+
+.taskBg .done .taskText{
   text-decoration: line-through;
   opacity: 0.3;
-  flex: 1;
+  
 }
 
 .iconsWrap{
@@ -53,6 +57,17 @@ position: relative;
   display: inline-block;
 }
 
-.taskBg.iconsWrap span{
-  
+.taskBg .iconsWrap span{
+  display: inline-block;
+  margin: 0px 10px 0px 10px;
+  cursor: pointer;
+  color: #00ff89;
+
+}
+.taskBg .iconsWrap span:hover {
+  color: yellow;
+}
+
+.mr-20{
+  margin-right: 20px;
 }
