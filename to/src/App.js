@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import AddTaskForm from './components/AddTaskForm';
-import UpdateForm from './components/UpdateForm';
-import ToDo from './components/ToDo';
+import AddTaskForm from "./components/AddTaskForm";
+import UpdateForm from "./components/UpdateForm";
+import ToDoList from "./components/ToDoList";
+import { v4 as uuidv4 } from "uuid";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
 
 function App() {
-  const [toDo, setToDo] = useState([
-    { id: 1, title: "task 1", status: false },
-    { id: 2, title: "task 2", status: false },
+  const [toDos, setToDos] = useState([
+    { id: uuidv4(), title: "task 1", isDone: true },
+    { id: uuidv4(), title: "task 2", isDone: false },
   ]);
 
   const [newTask, setNewTask] = useState("");
@@ -17,46 +19,45 @@ function App() {
 
   const addTask = () => {
     if (newTask) {
-      let num = toDo.length + 1;
-      let newEntry = { id: num, title: newTask, status: false };
-      setToDo([...toDo, newEntry]);
+      const toDo = { id: uuidv4(), title: newTask, isDone: false };
+      setToDos([...toDos, toDo]);
       setNewTask("");
     }
   };
 
   const deleteTask = (id) => {
-    let newTasks = toDo.filter((task) => task.id !== id);
-    setToDo(newTasks);
+    let newTasks = toDos.filter((task) => task.id !== id);
+    setToDos(newTasks);
   };
 
   const markDone = (id) => {
-    let newTasks = toDo.map((task) => {
+    let newTasks = toDos.map((task) => {
       if (task.id === id) {
-        return { ...task, status: !task.status };
+        return { ...task, isDone: !task.isDone };
       }
       return task;
     });
-    setToDo(newTasks);
+    setToDos(newTasks);
   };
 
   const cancelUpdate = () => {
-    setUpdateData('');
+    setUpdateData("");
   };
 
   const changeTask = (e) => {
-    let newEntry= {
+    let newEntry = {
       id: updateData.id,
       title: e.target.value,
-      status: updateData.status ? true : false
-    }
+      isDone: updateData.isDone,
+    };
     setUpdateData(newEntry);
   };
 
   const updateTask = () => {
-    let filterRecords = [...toDo].filter ( task => task.id !== updateData.id);
-    let updatedObject = [...filterRecords, updateData]
-    setToDo(updatedObject);
-    setUpdateData('');
+    let filterRecords = [...toDos].filter((task) => task.id !== updateData.id);
+    let updatedObject = [...filterRecords, updateData];
+    setToDos(updatedObject);
+    setUpdateData("");
   };
 
   return (
@@ -66,33 +67,33 @@ function App() {
       <h2>To Do List App</h2>
       <br></br>
 
-      {updateData && updateData ? (
-       <UpdateForm
-       updateData= {updateData}
-        changeTask={changeTask}
-        updateTask={updateTask}
-        cancelUpdate={cancelUpdate}
-       />
+      {updateData ? (
+        <UpdateForm
+          updateData={updateData}
+          changeTask={changeTask}
+          updateTask={updateTask}
+          cancelUpdate={cancelUpdate}
+        />
       ) : (
-        
-      <AddTaskForm
-      newTask={newTask}
-      setNewTask={setNewTask}
-      addTask={addTask}
-      />
+        <AddTaskForm
+          newTask={newTask}
+          setNewTask={setNewTask}
+          addTask={addTask}
+        />
       )}
-      
-      <br />
-  
 
-      {toDo && toDo.length ? "" : "No tasks...!"}
-<ToDo
-toDo={toDo}
-markDone={markDone}
-setUpdateData={setUpdateData}
-deleteTask={deleteTask}
-/>
-      
+      <br />
+
+      {toDos && toDos.length ? (
+        <ToDoList
+          toDos={toDos}
+          markDone={markDone}
+          setUpdateData={setUpdateData}
+          deleteTask={deleteTask}
+        />
+      ) : (
+        "No tasks...!"
+      )}
     </div>
   );
 }
