@@ -1,0 +1,42 @@
+button {
+  margin: 10px;
+  padding: 5px 10px;
+
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: beige
+}
+
+.primary {
+  border: 1px solid #1790ff;
+  background-color: #1790ff;
+  color: #fff;
+}
+
+.primary:hover {
+  background-color: lightblue;
+}
+
+.dashed {
+  border: 1px dashed #e2e2e2;
+  border-style: dotted;
+}
+
+.link {
+  border: none;
+  color: blue;
+  background-color: transparent;
+}
+
+.default {
+  border: 1px solid lightgray;
+  background-color: lightblue;
+  color: black;
+}
+
+.text {
+  border: none;
+  background-color: transparent;
+}
