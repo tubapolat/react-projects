@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
-export const toDosSlice = createSlice({
-  name: "toDos",
+export const notesSlice = createSlice({
+  name: "notes",
   initialState: {
     items: [
-      { id: uuidv4(), title: "task 1", isDone: true, colour: "green" },
-      { id: uuidv4(), title: "task 2", isDone: false, colour: "red" },
+      { id: uuidv4(), title: "Note 1", isDone: true, colour: "green" },
+      { id: uuidv4(), title: "Note 2", isDone: false, colour: "red" },
     ],
   },
   reducers: {
-    addToDo: (state, action) => {
+    addNote: (state, action) => {
       state.items.push(action.payload);
     },
     toggle: (state, action) => {
@@ -23,19 +23,19 @@ export const toDosSlice = createSlice({
       const task = state.items.find((task) => task.id === id); 
     }*/
 
-    deleteToDo: (state, action) => {
+    deleteNote: (state, action) => {
       const id = action.payload;
       state.items = state.items.filter((task) => task.id !== id);
     },
-    updateToDo: (state, action) => {
-      const updatedToDo = action.payload;
-      const filterToDo = state.items.filter(
-        (task) => task.id !== updatedToDo.id
+    updateNote: (state, action) => {
+      const updatedNote = action.payload;
+      const filterNote = state.items.filter(
+        (task) => task.id !== updatedNote.id
       );
-      state.items = [...filterToDo, updatedToDo];
+      state.items = [...filterNote, updatedNote];
     },
   },
 });
 
-export const { addToDo, toggle, deleteToDo, updateToDo } = toDosSlice.actions;
-export default toDosSlice.reducer;
+export const { addNote, toggle, deleteNote, updateNote } = notesSlice.actions;
+export default notesSlice.reducer;

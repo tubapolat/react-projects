@@ -5,16 +5,16 @@ import {
   faPen,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
-import { deleteToDo, toggle } from "../redux/toDos/toDosSlice";
+import { deleteNote, toggle } from "../redux/notes/notesSlice";
 import { useDispatch } from "react-redux";
 
-export const ToDo = ({ task, index, setUpdateData }) => {
+export const Note = ({ task, index, setUpdateData }) => {
   const dispatch = useDispatch();
   const markDone = (id) => {
     dispatch(toggle(id));
   };
   const deleteTask = (id) => {
-    dispatch(deleteToDo(id));
+    dispatch(deleteNote(id));
   };
   return (
     <React.Fragment key={task.id}>

@@ -1,50 +1,50 @@
 import React, { useState } from "react";
 import AddTaskForm from "./components/AddTaskForm";
 import UpdateForm from "./components/UpdateForm";
-import ToDoList from "./components/ToDoList";
+import NoteList from "./components/NoteList";
 import { v4 as uuidv4 } from "uuid";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addToDo, updateToDo } from "./redux/toDos/toDosSlice";
+import { addNote, updateNote } from "./redux/notes/notesSlice";
 
 function App() {
-  const toDos = useSelector((state) => state.toDos.items);
+  const notes = useSelector((state) => state.notes.items);
   const dispatch = useDispatch();
 
   const [newTask, setNewTask] = useState({ title: "", colour: "red" });
-  const [updatedToDo, setUpdatedToDo] = useState({ title: "" });
+  const [updatedNote, setUpdatedNote] = useState({ title: "" });
 
   const addTask = () => {
     if (newTask) {
-      const toDo = {
+      const note = {
         id: uuidv4(),
         title: newTask.title,
         isDone: false,
         colour: newTask.colour,
       };
-      dispatch(addToDo(toDo));
+      dispatch(addNote(note));
       setNewTask({ title: "", colour: "red" });
     }
   };
 
   const cancelUpdate = () => {
-    setUpdatedToDo({ title: "" });
+    setUpdatedNote({ title: "" });
   };
 
   const changeTask = (e) => {
     let newEntry = {
-      id: updatedToDo.id,
+      id: updatedNote.id,
       title: e.target.value,
-      isDone: updatedToDo.isDone,
+      isDone: updatedNote.isDone,
     };
-    setUpdatedToDo(newEntry);
+    setUpdatedNote(newEntry);
   };
 
   const updateTask = () => {
-    dispatch(updateToDo(updatedToDo));
-    setUpdatedToDo({});
+    dispatch(updateNote(updatedNote));
+    setUpdatedNote({});
   };
 
   return (
@@ -54,9 +54,9 @@ function App() {
       <h2>My Notes</h2>
       <br></br>
 
-      {updatedToDo.title ? (
+      {updatedNote.title ? (
         <UpdateForm
-          updateData={updatedToDo}
+          updateData={updatedNote}
           changeTask={changeTask}
           updateTask={updateTask}
           cancelUpdate={cancelUpdate}
@@ -71,8 +71,8 @@ function App() {
 
       <br />
 
-      {toDos && toDos.length ? (
-        <ToDoList toDos={toDos} setUpdateData={setUpdatedToDo} />
+      {notes && notes.length ? (
+        <NoteList notes={notes} setUpdateData={setUpdatedNote} />
       ) : (
         "No tasks...!"
       )}
