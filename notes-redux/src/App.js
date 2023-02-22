@@ -13,14 +13,19 @@ function App() {
   const toDos = useSelector((state) => state.toDos.items);
   const dispatch = useDispatch();
 
-  const [newTask, setNewTask] = useState({ title: "" });
+  const [newTask, setNewTask] = useState({ title: "", colour: "red" });
   const [updatedToDo, setUpdatedToDo] = useState({ title: "" });
 
   const addTask = () => {
     if (newTask) {
-      const toDo = { id: uuidv4(), title: newTask.title, isDone: false };
+      const toDo = {
+        id: uuidv4(),
+        title: newTask.title,
+        isDone: false,
+        colour: newTask.colour,
+      };
       dispatch(addToDo(toDo));
-      setNewTask({ title: "" });
+      setNewTask({ title: "", colour: "red" });
     }
   };
 
@@ -43,10 +48,10 @@ function App() {
   };
 
   return (
-    <div className="container App">
+    <div className="container text-center">
       <br></br>
       <br></br>
-      <h2>To Do List App</h2>
+      <h2>My Notes</h2>
       <br></br>
 
       {updatedToDo.title ? (

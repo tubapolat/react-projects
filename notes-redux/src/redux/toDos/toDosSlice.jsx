@@ -18,6 +18,11 @@ export const toDosSlice = createSlice({
       const task = state.items.find((task) => task.id === id);
       task.isDone = !task.isDone;
     },
+    /*changeColor: (state,action)=>{
+      const id= action.payload;
+      const task = state.items.find((task) => task.id === id); 
+    }*/
+
     deleteToDo: (state, action) => {
       const id = action.payload;
       state.items = state.items.filter((task) => task.id !== id);

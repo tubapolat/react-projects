@@ -18,11 +18,14 @@ export const ToDo = ({ task, index, setUpdateData }) => {
   };
   return (
     <React.Fragment key={task.id}>
-      <div className="col taskBg" style={{ backgroundColor: task.colour }}>
-        <div className={task.isDone ? "done" : ""}>
-          <span className="taskNumber">{index + 1}</span>
-          <span className="taskText">{task.title}</span>
-        </div>
+      <div
+        className="col-4 taskBg card ms-3"
+        style={{
+          backgroundColor: task.colour,
+          width: "18rem",
+          height: "18rem",
+        }}
+      >
         <div className="iconsWrap">
           <span
             title="Completed / Not Complieted"
@@ -48,6 +51,10 @@ export const ToDo = ({ task, index, setUpdateData }) => {
           <span title="Delete" onClick={() => deleteTask(task.id)}>
             <FontAwesomeIcon icon={faTrashCan} />
           </span>
+        </div>
+        <div className={("card-text ", task.isDone ? "done" : "")}>
+          <span className="taskNumber">{index + 1}</span>
+          <span className="taskText">{task.title}</span>
         </div>
       </div>
     </React.Fragment>
