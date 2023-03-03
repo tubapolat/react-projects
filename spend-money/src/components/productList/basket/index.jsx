@@ -39,7 +39,15 @@ export const Basket = () => {
           </tbody>
         </table>
       </div>
-      <div class="card-footer text-muted">Total amount</div>
+      <div class="card-footer text-muted">
+        Total amount:{" "}
+        <Money
+          money={basketItems.reduce(
+            (sum, item) => sum + item.amount * item.price,
+            0
+          )}
+        />
+      </div>
     </div>
   );
 };
