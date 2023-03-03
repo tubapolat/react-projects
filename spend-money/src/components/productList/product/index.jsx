@@ -1,3 +1,5 @@
+import { Money } from "../../money";
+
 export const Product = ({ title, price, url, id }) => {
   return (
     <div className="col-sm-4">
@@ -9,9 +11,11 @@ export const Product = ({ title, price, url, id }) => {
         />
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
-          <p className="card-text">£{price}</p>
+          <p className="card-text">
+            <Money money={price} />
+          </p>
           <button className="btn btn-primary">Buy</button>
-          <input style={{ width: "25%", margin: "10px" }}></input>
+          <span style={{ width: "25%", margin: "20px" }}>0</span>
           <button className="btn btn-secondary">Sell</button>
         </div>
       </div>
