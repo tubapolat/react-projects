@@ -1,20 +1,20 @@
 import { useSelector } from "react-redux";
-import { Money } from "../../money";
+import { Money } from "../money";
 
 export const Basket = () => {
   const basketItems = useSelector((state) => {
-    return state.basket.items;
+    return state.products.items;
   });
   return (
     <div
       className="card text-center"
       style={{ width: "500px", alignItems: "center", marginLeft: "373px" }}
     >
-      <div class="card-header">
+      <div className="card-header">
         <h2>Your Reciept</h2>
       </div>
-      <div class="card-body">
-        <table class="table table-warning">
+      <div className="card-body">
+        <table className="table table-warning">
           <thead>
             <tr>
               <th scope="col">Product Name</th>
@@ -24,22 +24,24 @@ export const Basket = () => {
             </tr>
           </thead>
           <tbody>
-            {basketItems.map((basketItem) => (
-              <tr>
-                <td>{basketItem.title}</td>
-                <td>
-                  <Money money={basketItem.price} />
-                </td>
-                <td>{basketItem.amount}</td>
-                <td>
-                  <Money money={basketItem.amount * basketItem.price} />
-                </td>
-              </tr>
-            ))}
+            {basketItems
+              .filter((basketItem) => basketItem.amount > 0)
+              .map((basketItem) => (
+                <tr>
+                  <td>{basketItem.title}</td>
+                  <td>
+                    <Money money={basketItem.price} />
+                  </td>
+                  <td>{basketItem.amount}</td>
+                  <td>
+                    <Money money={basketItem.amount * basketItem.price} />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
-      <div class="card-footer text-muted">
+      <div className="card-footer text-muted">
         Total amount:{" "}
         <Money
           money={basketItems.reduce(

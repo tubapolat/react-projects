@@ -3,12 +3,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./style.css";
 import { ProductList } from "./components/productList";
-import { Basket } from "./components/productList/basket";
+import { Basket } from "./components/basket";
 import { useSelector } from "react-redux";
 import { Money } from "./components/money";
 
 function App() {
-  const totalMoney = useSelector((state) => state.basket.totalMoney);
+  const totalMoney = useSelector((state) => state.products.totalMoney);
   return (
     <div className="App">
       <nav
