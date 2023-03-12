@@ -20,13 +20,13 @@ button:hover {
 }
 
 .front {
-  width: 150px;
-  height: 155px;
+  width: 100px;
+  height: 105px;
 }
 
 .back {
-  width: 150px;
-  height: 155px;
+  width: 100px;
+  height: 105px;
 }
 .card-grid {
   margin-top: 40px;
