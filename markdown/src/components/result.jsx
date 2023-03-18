@@ -31,7 +31,7 @@ export function Result(props) {
     <Container>
       <Title>Converted Text</Title>
       <ResultArea>
-        <ReactMarkdown source={markdownText} />
+        <ReactMarkdown children={markdownText}></ReactMarkdown>
       </ResultArea>
     </Container>
   );

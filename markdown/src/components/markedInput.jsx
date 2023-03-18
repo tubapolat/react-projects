@@ -27,18 +27,18 @@ const TextArea = styled.textarea`
   font-size: 17px;
 `;
 
-export function MarkedInput(props) {
-  const { setMarkeddownText } = useContext(editorContext);
+export function MarkedInput() {
+  const { markdownText, setMarkdownText } = useContext(editorContext);
 
   const onInputChange = (e) => {
-    const newvalue = e.currentTarget.value;
-    setMarkeddownText(newvalue);
+    const newValue = e.currentTarget.value;
+    setMarkdownText(newValue);
   };
 
   return (
     <Container>
       <Title>Markdown Text</Title>
-      <TextArea onChange={onInputChange} />
+      <TextArea value={markdownText} onChange={onInputChange} />
     </Container>
   );
 }
