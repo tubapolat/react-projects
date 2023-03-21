@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import editorContext from "../editorContext";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setMarkdownText } from "../redux/markdownSlice";
 
 const Container = styled.div`
   width: 50%;
@@ -28,11 +30,12 @@ const TextArea = styled.textarea`
 `;
 
 export function MarkedInput() {
-  const { markdownText, setMarkdownText } = useContext(editorContext);
+  const markdownText = useSelector((state) => state.markdown.markdownText);
+  const dispatch = useDispatch();
 
   const onInputChange = (e) => {
     const newValue = e.currentTarget.value;
-    setMarkdownText(newValue);
+    dispatch(setMarkdownText(newValue));
   };
 
   return (

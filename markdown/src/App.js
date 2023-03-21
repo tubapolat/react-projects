@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { MarkedInput } from "./components/markedInput";
 import { Result } from "./components/result";
 
-import { useState } from "react";
-import EditorContext from "./editorContext";
+import { useDispatch } from "react-redux";
+import { setMarkdownText } from "./redux/markdownSlice";
 
 const AppContainer = styled.div`
   width: 100%;
@@ -65,27 +65,22 @@ Spain.
  `;
 
 export default function App() {
-  const [markdownText, setMarkdownText] = useState("");
-  const contextValue = {
-    markdownText,
-    setMarkdownText,
-  };
+  const dispatch = useDispatch();
+
   return (
-    <EditorContext.Provider value={contextValue}>
-      <AppContainer>
-        <Title>Markdown Editor</Title>
-        <button
-          onClick={() => {
-            setMarkdownText(sample);
-          }}
-        >
-          ?
-        </button>
-        <EditorContainer>
-          <MarkedInput />
-          <Result />
-        </EditorContainer>
-      </AppContainer>
-    </EditorContext.Provider>
+    <AppContainer>
+      <Title>Markdown Editor</Title>
+      <button
+        onClick={() => {
+          dispatch(setMarkdownText(sample));
+        }}
+      >
+        ?
+      </button>
+      <EditorContainer>
+        <MarkedInput />
+        <Result />
+      </EditorContainer>
+    </AppContainer>
   );
 }

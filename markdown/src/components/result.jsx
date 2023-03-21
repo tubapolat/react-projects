@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
-import editorContext from "../editorContext";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   width: 50%;
@@ -26,7 +26,7 @@ const ResultArea = styled.div`
 `;
 
 export function Result(props) {
-  const { markdownText } = useContext(editorContext);
+  const markdownText = useSelector((state) => state.markdown.markdownText);
   return (
     <Container>
       <Title>Converted Text</Title>
