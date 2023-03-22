@@ -1,9 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { ForecastContext } from "../context/ForecastContext";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setForecast } from "../redux/weatherSlice";
 import { ShowForecast } from "./ShowForecast";
 
-function ForecastContainer() {
-  const { setForecast } = useContext(ForecastContext);
+function GetForecast() {
+  const dispatch = useDispatch();
 
   function getWeather(city) {
     fetch(
@@ -11,18 +12,19 @@ function ForecastContainer() {
     )
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
-        setForecast({
-          temp: result.main.temp,
-          wind: result.wind.speed,
-          icon: result.weather[0].icon,
-        });
+        dispatch(
+          setForecast({
+            temp: result.main.temp,
+            wind: result.wind.speed,
+            icon: result.weather[0].icon,
+          })
+        );
       });
   }
 
-  useEffect(()=>{
-    getWeather("London")
-  },[])
+  useEffect(() => {
+    getWeather("London");
+  }, []);
 
   const cities = ["London", "Oxford", "Cambridge"];
   const [city, setCity] = useState("London");
@@ -44,9 +46,8 @@ function ForecastContainer() {
       </select>
 
       <p>{city}</p>
-      <ShowForecast />
     </div>
   );
 }
 
-export default ForecastContainer;
+export default GetForecast;

@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { ForecastContext } from "../context/ForecastContext";
+import { useSelector } from "react-redux";
 
 export const ShowForecast = () => {
-  const { forecast } = useContext(ForecastContext);
+  const forecast = useSelector((state) => state.weather.forecast);
 
   const iconUrl = `http://openweathermap.org/img/wn/${forecast.icon}@2x.png`;
   return (
