@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+.container-fluid {
+  height: 250px;
+}
+
+.row {
+  margin-right: 100px;
+  margin-left: 100px;
+}
+
+.App-logo {
+  height: 120px;
+  margin: 100px;
+}
+
+.card {
+  height: 200px;
+}
