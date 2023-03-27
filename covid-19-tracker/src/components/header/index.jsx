@@ -1,10 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedCountry } from "../../redux/covidTrackerSlice";
 
 export const Header = () => {
   const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("GB");
 
+  const dispatch = useDispatch();
+  const { selectedCountry } = useSelector((state) => state.covidTracker);
   const getCountries = async () =>
     fetch("https://api.covid19api.com/countries");
 
@@ -29,11 +32,13 @@ export const Header = () => {
               class="form-select form-select-lg mb-3"
               aria-label=".form-select-lg example"
               value={selectedCountry}
-              onChange={(e) => setSelectedCountry(e.target.value)}
+              onChange={(e) => dispatch(setSelectedCountry(e.target.value))}
             >
               {countries &&
                 countries.map((country) => (
-                  <option value={country.ISO2}>{country.Country}</option>
+                  <option key={country.ISO2} value={country.ISO2}>
+                    {country.Country}
+                  </option>
                 ))}
             </select>
           </div>

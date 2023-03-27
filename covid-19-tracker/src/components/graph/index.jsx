@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import {
   BarChart,
   Bar,
@@ -8,10 +10,13 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { formatDate } from "../../helpers/formatter";
 
 export const Graph = () => {
+  const { countryData } = useSelector((state) => state.covidTracker);
+
   return (
-    <div className="container">
+    <div className="container" style={{ marginTop: 50 }}>
       <div className="row">
         <div className="col d-flex flex-column align-items-center justify-content-center">
           <BarChart
@@ -20,27 +25,27 @@ export const Graph = () => {
             data={[
               {
                 name: "Infected",
-                value: 100,
+                value: countryData.Confirmed,
                 color: "info",
-                date: new Date(),
+                date: formatDate(countryData.Date),
               },
               {
                 name: "Recovered",
-                value: 99,
+                value: countryData.Recovered,
                 color: "secondary",
-                date: new Date(),
+                date: formatDate(countryData),
               },
               {
                 name: "Active",
-                value: 78,
+                value: countryData.Active,
                 color: "warning",
-                date: new Date(44444),
+                date: formatDate(countryData),
               },
               {
                 name: "Deaths",
-                value: 23,
+                value: countryData.Deaths,
                 color: "danger",
-                date: new Date(44),
+                date: formatDate(countryData),
               },
             ]}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
