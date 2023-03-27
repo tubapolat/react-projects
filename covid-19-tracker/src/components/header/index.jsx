@@ -21,7 +21,7 @@ export const Header = () => {
         setCountries(orderedCountries);
       });
   }, []);
-  console.log(selectedCountry);
+
   return (
     <div>
       <nav class="navbar navbar-expand-lg">
