@@ -8,4 +8,4 @@ In the project directory, you can run:
 
 ## Example view:
 
-![Screenshot1](https://github.com/tubapolat/react-projects/blob/main/typing-speed/public/screenShot.pngraw=true)
+![Screenshot1](https://github.com/tubapolat/react-projects/blob/main/typing-speed/public/screenShot.png?raw=true)
