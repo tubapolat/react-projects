@@ -27,7 +27,7 @@ run the command below on your terminal:
 run the following command to start your server
 ``npm run dev``
 
-## install Oostman
+## install Postman
 
 download the application via https://www.postman.com/downloads/
 install with default suggested options and open the application `Postman`
